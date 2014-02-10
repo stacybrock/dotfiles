@@ -1,0 +1,7 @@
+[user]
+	email = brock@oregonstate.edu
+	name = Stacy Brock
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/brocks/.gitignore
