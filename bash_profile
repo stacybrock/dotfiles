@@ -1,7 +1,7 @@
 export PS1="\u@\h:\w$ "
 export CLICOLOR=1
 export LSCOLORS=ExgxCxDxCxegedabagaced
-export LESS='-i-P%f (%i/%m) line %lt/%L'
+export LESS='-R-i-P%f (%i/%m) line %lt/%L'
 
 alias ll='ls -lh'
 
