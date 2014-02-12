@@ -4,6 +4,7 @@ export LSCOLORS=ExgxCxDxCxegedabagaced
 export LESS='-R-i-P%f (%i/%m) line %lt/%L'
 
 alias ll='ls -lh'
+alias marked='open -a Marked'
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
