@@ -12,6 +12,16 @@ DOTFILES="/Users/brocks/dotfiles/*"
 BIN="/Users/brocks/dotfiles/bin/*"
 BACKUP="/Users/brocks/.dotfiles_old"
 
+########## Utility Functions
+
+# hasElement
+# returns true if element is contained in the given array
+hasElement() {
+    local element
+    for element in "${@:2}"; do [[ "$element" == "$1" ]] && return 0; done
+    return 1
+}
+
 ##########
 
 # create .dotfiles_old in homedir
@@ -45,9 +55,14 @@ done
 
 # create bin file symlinks
 echo "processing bin files..."
+ignorefiles=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb")
 for file in $BIN
 do
     f=`basename $file`
+
+    # check if this file should be ignored
+    if hasElement $f "${ignorefiles[@]}"; then continue; fi
+
     if [ -L "$home/bin/$f" ]; then
         echo "  symlink for $file already exists, skipping..."
         continue
