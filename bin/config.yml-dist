@@ -1,0 +1,6 @@
+global:
+    pushover_user_key: changeme
+bus_eta:
+    pushover_app_key: changeme
+    device: nexus5
+    tempfile: /tmp/bus_eta.log
