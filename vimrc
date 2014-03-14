@@ -34,16 +34,11 @@ compiler ruby
 " detect puppet filetype
 au BufRead,BufNewFile *.pp              set filetype=puppet
 
-" improved statusline
+" detect txt files
+au BufRead,BufNewFile *.txt             set filetype=text
+
+" vim-airline statusline hotness
 set laststatus=2
-set statusline=%t\      "tail of the filename
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=\ %y    "filetype
-"set statusline+=%=     "left/right separator
-set statusline+=\ %c,   "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+let g:airline_powerline_fonts=1
+set t_Co=256
+set ttimeoutlen=50
