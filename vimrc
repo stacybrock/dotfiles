@@ -39,6 +39,29 @@ au BufRead,BufNewFile *.txt             set filetype=text
 
 " vim-airline statusline hotness
 set laststatus=2
-let g:airline_powerline_fonts=1
 set t_Co=256
 set ttimeoutlen=50
+let g:airline_powerline_fonts=1
+
+" powerline symbols
+" use with Anonymous For Powerline
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
+
+" old vim-powerline symbols
+" use with Droid Sans Mono Dotted for Powerline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
