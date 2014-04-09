@@ -2,39 +2,33 @@
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
-" turn on syntax highlighting
-syntax on
+set nocompatible
+syntax on           " turn on syntax highlighting
+filetype on
+filetype indent on
+filetype plugin on
 
 " map jj to escape
 inoremap jj <Esc>
 
 " fix annoyances
 map q: :
+command -bang Q quit<bang>
 
-" sets your tab to four spaces
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set smarttab
-set ai
-set si
+" formatting options
+set tabstop=4       " set tab to four columns
+set softtabstop=4   " set tab to four columns when inserting
+set expandtab       " convert tabs to spaces
+set shiftwidth=4    " set number of columns when reindenting
+set smarttab        " insert columns equal to shiftwidth
+set autoindent
+set smartindent
 
 " highlight closing brackets
 set showmatch
 
-" enable some kewl vim-specific ruby stuff
-" http://www.rubygarden.org/ruby?VimRubySupport
-set nocompatible
-filetype on
-filetype indent on
-filetype plugin on
-compiler ruby
-
-" detect puppet filetype
+" detect filetypes
 au BufRead,BufNewFile *.pp              set filetype=puppet
-
-" detect txt files
 au BufRead,BufNewFile *.txt             set filetype=text
 
 " vim-airline statusline hotness
