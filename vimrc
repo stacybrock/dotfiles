@@ -1,12 +1,29 @@
+" ------------------------------------------------------------------------
+" important
+" ------------------------------------------------------------------------
+
+set nocompatible
+
 " pathogen
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
-set nocompatible
+" ------------------------------------------------------------------------
+" syntax, highlighting and spelling
+" ------------------------------------------------------------------------
+
 syntax on           " turn on syntax highlighting
 filetype on
 filetype indent on
 filetype plugin on
+
+" detect filetypes
+au BufRead,BufNewFile *.pp              set filetype=puppet
+au BufRead,BufNewFile *.txt             set filetype=text
+
+" ------------------------------------------------------------------------
+" custom command mappings
+" ------------------------------------------------------------------------
 
 " map jj to escape
 inoremap jj <Esc>
@@ -15,7 +32,16 @@ inoremap jj <Esc>
 map q: :
 command -bang Q quit<bang>
 
-" formatting options
+" ------------------------------------------------------------------------
+" editing text
+" ------------------------------------------------------------------------
+
+set showmatch       " highlight closing brackets
+
+" ------------------------------------------------------------------------
+" tabs and indenting
+" ------------------------------------------------------------------------
+
 set tabstop=4       " set tab to four columns
 set softtabstop=4   " set tab to four columns when inserting
 set expandtab       " convert tabs to spaces
@@ -24,21 +50,17 @@ set smarttab        " insert columns equal to shiftwidth
 set autoindent
 set smartindent
 
-" highlight closing brackets
-set showmatch
+" ------------------------------------------------------------------------
+" statusline hotness (via vim-airline)
+" ------------------------------------------------------------------------
 
-" detect filetypes
-au BufRead,BufNewFile *.pp              set filetype=puppet
-au BufRead,BufNewFile *.txt             set filetype=text
-
-" vim-airline statusline hotness
 set laststatus=2
 set t_Co=256
 set ttimeoutlen=50
 let g:airline_powerline_fonts=1
 
 " powerline symbols
-" use with Anonymous For Powerline
+" use with the font Anonymous for Powerline
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
 " let g:airline_right_sep = ''
@@ -48,7 +70,7 @@ let g:airline_powerline_fonts=1
 " let g:airline_symbols.linenr = ''
 
 " old vim-powerline symbols
-" use with Droid Sans Mono Dotted for Powerline
+" use with the font Droid Sans Mono Dotted for Powerline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
