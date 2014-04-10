@@ -6,4 +6,7 @@
 [core]
 	excludesfile = /Users/brocks/.gitignore
 [alias]
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ctags = !.git/hooks/ctags
+[init]
+	templatedir = ~/.git_template
