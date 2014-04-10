@@ -11,6 +11,8 @@
 DOTFILES="/Users/brocks/dotfiles/*"
 BIN="/Users/brocks/dotfiles/bin/*"
 BACKUP="/Users/brocks/.dotfiles_old"
+IGNORE_DOTFILES=("README.md" "bin")
+IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb")
 
 ########## Utility Functions
 
@@ -36,14 +38,18 @@ echo "processing dotfiles..."
 for file in $DOTFILES
 do
     f=`basename $file`
-    if [ -f "$file" ]; then
+
+    # check if this file should be ignored
+    if hasElement $f "${IGNORE_DOTFILES[@]}"; then continue; fi
+
+    if [[ -f "$file" || -d "$file" ]]; then
         # check if symlink already exists
         if [ -L "$home/.$f" ]; then
-            echo "  symlink for $f already exists, skipping..."
+            echo "  skipping symlink for $f (already exists)..."
             continue
         fi
         # check if dotfile is a regular file; if so, back it up
-        if [ -f "$home/.$f" ]; then
+        if [[ -f "$home/.$f" || -d "$file" ]]; then
             echo "  moving ~/.$f to $BACKUP"
             mv ~/.$f $BACKUP
         fi
@@ -55,16 +61,15 @@ done
 
 # create bin file symlinks
 echo "processing bin files..."
-ignorefiles=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb")
 for file in $BIN
 do
     f=`basename $file`
 
     # check if this file should be ignored
-    if hasElement $f "${ignorefiles[@]}"; then continue; fi
+    if hasElement $f "${IGNORE_BINFILES[@]}"; then continue; fi
 
     if [ -L "$home/bin/$f" ]; then
-        echo "  symlink for $file already exists, skipping..."
+        echo "  skipping symlink for $file (already exists)..."
         continue
     fi
     echo "  creating symlink: ~/bin/$f -> $file"
