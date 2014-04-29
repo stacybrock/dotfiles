@@ -1,5 +1,8 @@
+" .vimrc
+" This file is organized by categories defined in :options
+
 " ------------------------------------------------------------------------
-" important
+" 1. important
 " ------------------------------------------------------------------------
 
 set nocompatible
@@ -8,8 +11,15 @@ set nocompatible
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
+" map jj to escape
+inoremap jj <Esc>
+
+" fix annoyances
+map q: :
+command -bang Q quit<bang>
+
 " ------------------------------------------------------------------------
-" syntax, highlighting and spelling
+" 5. syntax, highlighting and spelling
 " ------------------------------------------------------------------------
 
 syntax on           " turn on syntax highlighting
@@ -21,25 +31,15 @@ filetype plugin on
 au BufRead,BufNewFile *.pp              set filetype=puppet
 au BufRead,BufNewFile *.txt             set filetype=text
 
-" ------------------------------------------------------------------------
-" custom command mappings
-" ------------------------------------------------------------------------
-
-" map jj to escape
-inoremap jj <Esc>
-
-" fix annoyances
-map q: :
-command -bang Q quit<bang>
 
 " ------------------------------------------------------------------------
-" editing text
+" 13. editing text
 " ------------------------------------------------------------------------
 
 set showmatch       " highlight closing brackets
 
 " ------------------------------------------------------------------------
-" tabs and indenting
+" 14. tabs and indenting
 " ------------------------------------------------------------------------
 
 set tabstop=4       " set tab to four columns
@@ -51,7 +51,7 @@ set autoindent
 set smartindent
 
 " ------------------------------------------------------------------------
-" running make and jumping to errors
+" 22. running make and jumping to errors
 " ------------------------------------------------------------------------
 
 set grepprg=ack | autocmd QuickFixCmdPost *grep* cwindow
