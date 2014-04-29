@@ -19,6 +19,14 @@ map q: :
 command -bang Q quit<bang>
 
 " ------------------------------------------------------------------------
+" 4. displaying text
+" ------------------------------------------------------------------------
+
+if &listchars ==# 'eol:$'
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
+" ------------------------------------------------------------------------
 " 5. syntax, highlighting and spelling
 " ------------------------------------------------------------------------
 
@@ -31,6 +39,8 @@ filetype plugin on
 au BufRead,BufNewFile *.pp              set filetype=puppet
 au BufRead,BufNewFile *.txt             set filetype=text
 
+" highlight listchars (trail, etc) in red
+highlight SpecialKey ctermbg=196
 
 " ------------------------------------------------------------------------
 " 13. editing text
