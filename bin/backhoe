@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+# extract words from text by part of speech
+
+require 'rubygems'
+require 'bundler/setup'
+
+require 'thor'
+require 'engtagger'
+require 'pp'
+
+class EngTagger
+  VERBS = get_ext('vb[gdnpz]*')
+
+  def get_by_pos(tagged, pos)
+    return nil unless valid_text(tagged)
+    pos
+    trimmed = tagged.scan(pos).map do |n|
+      strip_tags(n, true)
+    end
+    ret = Hash.new(0)
+    trimmed.each do |n|
+      n = stem(n)
+      next unless n.length < 100 # sanity check on word length
+      ret[n] += 1 unless n =~ /\A\s*\z/
+    end
+    return ret
+  end
+end
+
+class Backhoe < Thor
+  desc "extract POS", "extract all words of the given part of speech"
+  method_option :inputfile, :aliases => '-i', :desc => 'inputfile', :required => true
+  def extract(pos)
+    valid_pos = ['verbs', 'adjectives', 'nouns']
+    if !valid_pos.include?(pos)
+      puts "ERROR: invalid part of speech given: #{pos}\nValid options are: #{valid_pos}\n\n"
+      help
+      exit
+    end
+
+    if File.exists?(File.expand_path File.dirname(__FILE__) + '/' + options[:inputfile])
+      source = File.open(File.expand_path File.dirname(__FILE__) + '/' + options[:inputfile])
+    elsif File.exists?(options[:inputfile])
+      source = File.open(options[:inputfile])
+    else
+      puts "ERROR: file not found"
+      help
+      exit
+    end
+
+    text = source.read
+
+    tgr = EngTagger.new
+    tagged = tgr.add_tags(text)
+    if pos == 'verbs'
+      target_pos = EngTagger::VERBS
+    elsif pos == 'adjectives'
+      target_pos = EngTagger::JJ
+    elsif pos == 'nouns'
+      target_pos = EngTagger::NN
+    end
+    words = tgr.get_by_pos(tagged, target_pos).sort_by { |k,v| v }
+    words.reverse_each do |w|
+      puts "#{w[0]}, #{w[1]}"
+    end
+  end
+end
+
+Backhoe.start(ARGV)
