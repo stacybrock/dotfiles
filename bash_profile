@@ -5,6 +5,8 @@ export LESS='-R-i-P%f (%i/%m) line %lt/%L'
 
 alias ll='ls -lh'
 alias marked='open -a Marked'
+alias grep='grep --color=auto'
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 
 # bash history tweaks
 export HISTFILESIZE=10000
@@ -22,6 +24,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 WORKON_HOME=/Users/brocks/PythonEnvs
 export WORKON_HOME
 source /usr/local/bin/virtualenvwrapper.sh
+
+# go stuff
+export GOPATH=$HOME/.go
+PATH=$PATH:$GOPATH/bin
 
 PATH=$PATH:/Users/brocks/bin:/usr/local/opt/ruby/bin
 export PATH
