@@ -11,6 +11,12 @@ set nocompatible
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
+" leader
+let mapleader = ","
+
+" re-hardwrap a paragraph of text
+nnoremap <leader>q gqip
+
 " map jj to escape
 inoremap jj <Esc>
 
@@ -59,6 +65,13 @@ set shiftwidth=4    " set number of columns when reindenting
 set smarttab        " insert columns equal to shiftwidth
 set autoindent
 set smartindent
+
+" ------------------------------------------------------------------------
+" 20. command line editing
+" ------------------------------------------------------------------------
+
+set undofile        " save and restore undo history
+set undodir=/Users/brocks/.vimundo
 
 " ------------------------------------------------------------------------
 " 22. running make and jumping to errors
