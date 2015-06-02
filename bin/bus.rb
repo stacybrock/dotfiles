@@ -14,7 +14,7 @@ require_relative 'util.rb'
 CONFIG = YAML.load_file(File.expand_path File.dirname(__FILE__) + '/config.yml')
 
 now = Time.new
-start_notifications = Time.new(now.year, now.month, now.day, 16, 15, 0, now.utc_offset)
+start_notifications = Time.new(now.year, now.month, now.day, 16, 45, 0, now.utc_offset)
 end_notifications = Time.new(now.year, now.month, now.day, 17, 30, 0, now.utc_offset)
 
 previously = {}
@@ -33,7 +33,7 @@ rows.each do |route|
 
   notification_message = "route #{route_number} will arrive in #{route_eta} " + Util.pluralize(route_eta, 'minute')
 
-  if route_eta <= 5
+  if route_eta <= 10
     next unless (now <=> start_notifications) == 1 && (now <=> end_notifications) == -1
 
     next if previously.has_key?(route_number)
