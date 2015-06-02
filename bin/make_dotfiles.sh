@@ -8,9 +8,9 @@
 
 ########## Configuration
 
-DOTFILES="/Users/brocks/dotfiles/*"
-BIN="/Users/brocks/dotfiles/bin/*"
-BACKUP="/Users/brocks/.dotfiles_old"
+DOTFILES="$HOME/dotfiles/*"
+BIN="$HOME/dotfiles/bin/*"
+BACKUP="$HOME/.dotfiles_old"
 IGNORE_DOTFILES=("README.md" "bin")
 IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb")
 
@@ -30,9 +30,6 @@ hasElement() {
 echo "creating $BACKUP for backing up existing dotfiles..."
 mkdir -p $BACKUP
 
-# grab homedir
-home=`echo ~`
-
 # create dotfile symlinks
 echo "processing dotfiles..."
 for file in $DOTFILES
@@ -44,12 +41,12 @@ do
 
     if [[ -f "$file" || -d "$file" ]]; then
         # check if symlink already exists
-        if [ -L "$home/.$f" ]; then
+        if [ -L "$HOME/.$f" ]; then
             echo "  skipping symlink for $f (already exists)..."
             continue
         fi
         # check if dotfile is a regular file; if so, back it up
-        if [[ -f "$home/.$f" || -d "$file" ]]; then
+        if [[ -f "$HOME/.$f" || -d "$HOME/.$f" ]]; then
             echo "  moving ~/.$f to $BACKUP"
             mv ~/.$f $BACKUP
         fi
@@ -58,6 +55,14 @@ do
         ln -s $file ~/.$f
     fi
 done
+
+# does bin dir exist?
+if [[ -d "$HOME/bin" ]]; then
+    echo "$HOME/bin exists"
+else
+    echo "creating $HOME/bin"
+    mkdir $HOME/bin
+fi
 
 # create bin file symlinks
 echo "processing bin files..."
@@ -68,7 +73,7 @@ do
     # check if this file should be ignored
     if hasElement $f "${IGNORE_BINFILES[@]}"; then continue; fi
 
-    if [ -L "$home/bin/$f" ]; then
+    if [ -L "$HOME/bin/$f" ]; then
         echo "  skipping symlink for $file (already exists)..."
         continue
     fi
