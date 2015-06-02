@@ -5,8 +5,13 @@
 	default = simple
 [core]
 	excludesfile = /Users/brocks/.gitignore
+	autocrlf = input
 [alias]
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	upstatus = log HEAD..upstream/master --oneline
 	ctags = !.git/hooks/ctags
+	s = status -s
 [init]
 	templatedir = ~/.git_template
+[pull]
+	rebase = true
