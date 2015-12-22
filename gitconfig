@@ -11,6 +11,7 @@
 	upstatus = log HEAD..upstream/master --oneline
 	ctags = !.git/hooks/ctags
 	s = status -s
+	root = "!f() { GITROOT=`pwd`; echo $GITROOT; }; f"
 [init]
 	templatedir = ~/.git_template
 [pull]
