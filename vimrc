@@ -24,6 +24,10 @@ inoremap jj <Esc>
 map q: :
 command -bang Q quit<bang>
 
+" toggle spellcheck
+imap <Leader>s <C-o>:setlocal spell!<CR>
+nmap <Leader>s :setlocal spell!<CR>
+
 " ------------------------------------------------------------------------
 " 4. displaying text
 " ------------------------------------------------------------------------

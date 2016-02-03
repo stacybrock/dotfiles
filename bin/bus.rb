@@ -15,7 +15,7 @@ CONFIG = YAML.load_file(File.expand_path File.dirname(__FILE__) + '/config.yml')
 
 now = Time.new
 start_notifications = Time.new(now.year, now.month, now.day, 16, 45, 0, now.utc_offset)
-end_notifications = Time.new(now.year, now.month, now.day, 17, 30, 0, now.utc_offset)
+end_notifications = Time.new(now.year, now.month, now.day, 17, 15, 0, now.utc_offset)
 
 previously = {}
 if File.exist?(CONFIG['bus_eta']['tempfile'])
