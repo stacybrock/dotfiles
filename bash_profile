@@ -8,7 +8,7 @@ export EDITOR='vi'
 alias ll='ls -lh'
 alias marked='open -a Marked'
 alias grep='grep --color=auto'
-alias groot='cd `git root`'
+alias groot='cd "`git root`"'
 eval "$(thefuck --alias)"
 
 # bash history tweaks
