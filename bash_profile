@@ -23,11 +23,6 @@ shopt -s no_empty_cmd_completion
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# virtualenvwrapper
-WORKON_HOME=/Users/brocks/PythonEnvs
-export WORKON_HOME
-source /usr/local/bin/virtualenvwrapper.sh
-
 # go
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
@@ -38,3 +33,7 @@ PATH=$PATH:$GOPATH/bin
 # PATH
 PATH=$PATH:/Users/brocks/bin:/usr/local/opt/ruby/bin
 export PATH
+
+# virtualenvwrapper
+export WORKON_HOME=/Users/brocks/PythonEnvs
+source /usr/local/bin/virtualenvwrapper.sh
