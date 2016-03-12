@@ -12,6 +12,7 @@
 	ctags = !.git/hooks/ctags
 	s = status -s
 	root = "!f() { GITROOT=`pwd`; echo $GITROOT; }; f"
+	pch = !.git/hooks/pre-commit
 [init]
 	templatedir = ~/.git_template
 [pull]
