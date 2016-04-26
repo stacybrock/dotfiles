@@ -37,3 +37,6 @@ export PATH
 # virtualenvwrapper
 export WORKON_HOME=/Users/brocks/PythonEnvs
 source /usr/local/bin/virtualenvwrapper.sh
+
+# homebrew disable google analytics tracking
+export HOMEBREW_NO_ANALYTICS=1
