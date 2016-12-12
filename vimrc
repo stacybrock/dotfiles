@@ -57,6 +57,7 @@ highlight SpecialKey ctermbg=196
 " ------------------------------------------------------------------------
 
 set showmatch       " highlight closing brackets
+set backspace=2     " make backspace work across inserts, newlines, etc
 
 " ------------------------------------------------------------------------
 " 14. tabs and indenting
@@ -67,8 +68,6 @@ set softtabstop=4   " set tab to four columns when inserting
 set expandtab       " convert tabs to spaces
 set shiftwidth=4    " set number of columns when reindenting
 set smarttab        " insert columns equal to shiftwidth
-set autoindent
-set smartindent
 
 " ------------------------------------------------------------------------
 " 20. command line editing
