@@ -38,5 +38,15 @@ export PATH
 export WORKON_HOME=/Users/brocks/PythonEnvs
 source /usr/local/bin/virtualenvwrapper.sh
 
-# homebrew disable google analytics tracking
-export HOMEBREW_NO_ANALYTICS=1
+
+case $(uname -s) in
+*Linux*)
+    # Linux-specific things here
+    ;;
+*Darwin*)
+    # homebrew disable google analytics tracking
+    export HOMEBREW_NO_ANALYTICS=1
+
+    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    ;;
+esac
