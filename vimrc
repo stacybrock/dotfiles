@@ -70,6 +70,12 @@ set shiftwidth=4    " set number of columns when reindenting
 set smarttab        " insert columns equal to shiftwidth
 
 " ------------------------------------------------------------------------
+" 18 reading and writing files
+" ------------------------------------------------------------------------
+
+set cryptmethod=blowfish2
+
+" ------------------------------------------------------------------------
 " 20. command line editing
 " ------------------------------------------------------------------------
 
