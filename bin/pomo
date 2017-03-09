@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+# pomodoro timer for mac
+# requires terminal-notifier (https://github.com/julienXX/terminal-notifier)
+# control via signals:
+#   -QUIT - quit the timer
+#   -USR1 - reset the timer
+#   -STOP - pause the timer
+#   -CONT - unpause the timer
+
+class Pomo
+  attr_accessor :count
+  attr_reader :quit
+
+  def initialize
+    @count = 0
+    @quit = false
+  end
+
+  def reset_count
+    @count = 0
+  end
+
+  def log(message)
+    puts "#{Time.now.strftime("%F %T")} [#{Process.pid}] #{message}"
+  end
+
+  def do_sleep(duration)
+    log "sleeping for #{duration}"
+    (1..duration).each do |i|
+      if !quit
+        log "#{i}" if i % 300 == 0
+        sleep 1
+      else
+        log "quitting"
+        exit(true)
+      end
+    end
+  end
+
+  def do_notification(message)
+    log "creating notification: #{message}"
+    result = `terminal-notifier -title "🍅 pomo sez" -message "#{message}" -timeout 10 -sound Ping`
+  end
+
+  def trap_signals
+    Signal.trap("USR1") do
+      reset_count()
+    end
+
+    Signal.trap("QUIT") do   # graceful shutdown of run! loop
+      @quit = true
+    end
+  end
+
+  def run!
+    trap_signals
+
+    while !quit
+      @count = @count + 1
+      do_sleep(25*60)
+      if @count < 5
+        msg = "#{@count} - take a 5 minute break"
+        breakfor = 300
+      else
+        msg = "#{@count} - take a 15 minute break"
+        breakfor = 900
+        reset_count()
+      end
+      do_notification(msg)
+      do_sleep(breakfor)
+      do_notification("break time's over")
+    end
+  end
+end
+
+pomo = Pomo.new
+pomo.run!
