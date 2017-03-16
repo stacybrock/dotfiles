@@ -29,7 +29,7 @@ class Pomo
     log "sleeping for #{duration}"
     (1..duration).each do |i|
       if !quit
-        log "#{i}" if i % 300 == 0
+        log "#{i}" if (i % 300 == 0 and i != duration)
         sleep 1
       else
         log "quitting"
@@ -59,7 +59,7 @@ class Pomo
     while !quit
       @count = @count + 1
       do_sleep(25*60)
-      if @count < 5
+      if @count < 4
         msg = "#{@count} - take a 5 minute break"
         breakfor = 300
       else
