@@ -46,6 +46,7 @@ class Pomo
   def trap_signals
     Signal.trap("USR1") do
       reset_count()
+      log "counter reset to 0"
     end
 
     Signal.trap("QUIT") do   # graceful shutdown of run! loop

@@ -6,8 +6,8 @@ export EDITOR='vi'
 
 # aliases
 alias ll='ls -lh'
-alias marked='open -a Marked'
 alias grep='grep --color=auto'
+alias cal='gcal'
 alias groot='cd "`git root`"'
 eval "$(thefuck --alias)"
 
@@ -23,6 +23,9 @@ shopt -s no_empty_cmd_completion
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # go
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
@@ -32,11 +35,8 @@ PATH=$PATH:$GOPATH/bin
 
 # PATH
 PATH=$PATH:/Users/brocks/bin:/usr/local/opt/ruby/bin
+PATH=$PATH:/usr/local/opt/node@6/bin
 export PATH
-
-# virtualenvwrapper
-export WORKON_HOME=/Users/brocks/PythonEnvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 
 case $(uname -s) in
