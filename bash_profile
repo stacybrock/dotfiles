@@ -34,7 +34,7 @@ PATH=$PATH:$GOPATH/bin
 . `brew --prefix`/etc/profile.d/z.sh
 
 # PATH
-PATH=$PATH:/Users/brocks/bin:/usr/local/opt/ruby/bin
+PATH=/Users/brocks/bin:/usr/local/opt/ruby/bin:$PATH
 PATH=$PATH:/usr/local/opt/node@6/bin
 export PATH
 
