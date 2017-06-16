@@ -4,7 +4,7 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/brocks/.gitignore
+	excludesfile = ~/.gitignore
 	autocrlf = input
 [alias]
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all

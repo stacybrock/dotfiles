@@ -80,7 +80,7 @@ set cryptmethod=blowfish2
 " ------------------------------------------------------------------------
 
 set undofile        " save and restore undo history
-set undodir=/Users/brocks/.vimundo
+set undodir=$HOME/.vimundo
 
 " ------------------------------------------------------------------------
 " 22. running make and jumping to errors
@@ -119,3 +119,4 @@ let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
+let g:airline_symbols.maxlinenr = '☰'
