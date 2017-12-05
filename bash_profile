@@ -25,6 +25,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+pyenv virtualenvwrapper
 
 # go
 export GOPATH=$HOME/.go
@@ -32,6 +33,11 @@ PATH=$PATH:$GOPATH/bin
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
+
+# exercism bash completion
+if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+  . ~/.config/exercism/exercism_completion.bash
+fi
 
 # PATH
 PATH=$HOME/bin:/usr/local/opt/ruby/bin:$PATH
