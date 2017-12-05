@@ -1,19 +1,20 @@
 [user]
-	email = brock@oregonstate.edu
-	name = Stacy Brock
+    email = brock@oregonstate.edu
+    name = Stacy Brock
 [push]
-	default = simple
+    default = simple
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = input
+    excludesfile = ~/.gitignore
+    autocrlf = input
 [alias]
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	upstatus = log HEAD..upstream/master --oneline
-	ctags = !.git/hooks/ctags
-	s = status -s
-	root = "!f() { GITROOT=`pwd`; echo $GITROOT; }; f"
-	pch = !.git/hooks/pre-commit
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ds = diff --staged
+    upstatus = log HEAD..upstream/master --oneline
+    ctags = !.git/hooks/ctags
+    s = status -s
+    root = "!f() { GITROOT=`pwd`; echo $GITROOT; }; f"
+    pch = !.git/hooks/pre-commit
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
 [pull]
-	rebase = true
+    rebase = true
