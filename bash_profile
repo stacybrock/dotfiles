@@ -41,7 +41,7 @@ fi
 
 # PATH
 PATH=$HOME/bin:/usr/local/opt/ruby/bin:$PATH
-PATH=$PATH:/usr/local/opt/node@6/bin
+PATH=$PATH:/usr/local/opt/node/bin
 export PATH
 
 
@@ -52,6 +52,10 @@ case $(uname -s) in
 *Darwin*)
     # homebrew disable google analytics tracking
     export HOMEBREW_NO_ANALYTICS=1
+
+    # java on mac os
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+    export PATH=$PATH:/usr/local/Cellar/maven/3.5.2/bin
 
     [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
     ;;
