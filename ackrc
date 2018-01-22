@@ -12,8 +12,12 @@
 #   of text against a Perl regular expression.  This is only for
 #   the --type-add option.
 
+--sort-files
 
 ### Directories to ignore
+
+# OS X Library
+--ignore-directory=match:^Library
 
 # Bazaar
 # http://bazaar.canonical.com/
