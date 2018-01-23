@@ -40,7 +40,7 @@ if [ -f ~/.config/exercism/exercism_completion.bash ]; then
 fi
 
 # PATH
-PATH=$HOME/bin:/usr/local/opt/ruby/bin:$PATH
+PATH=$HOME/bin:$PATH:/usr/local/opt/ruby/bin
 PATH=$PATH:/usr/local/opt/node/bin
 export PATH
 
