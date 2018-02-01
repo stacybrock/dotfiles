@@ -8,3 +8,6 @@ Session.vim
 
 # rbenv/bundle
 .bundle
+
+# ack configs
+.ackrc
