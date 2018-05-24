@@ -52,6 +52,10 @@ au BufRead,BufNewFile *.txt             set filetype=text
 " highlight listchars (trail, etc) in red
 highlight SpecialKey ctermbg=196
 
+" spellcheck language and spellfile
+set spelllang=en
+set spellfile=$HOME/Dropbox/archives/vim/en.utf-8.add
+
 " ------------------------------------------------------------------------
 " 13. editing text
 " ------------------------------------------------------------------------
