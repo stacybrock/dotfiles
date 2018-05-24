@@ -1,0 +1,6 @@
+#!/bin/bash
+
+filename=`python ~/dotfiles/bin/list_adocs.py | peco`
+if [ ! $filename = '' ]; then
+    vim $filename
+fi
