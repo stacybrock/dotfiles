@@ -126,6 +126,12 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_symbols.maxlinenr = '☰'
 
 " ------------------------------------------------------------------------
+" terraform settings
+" ------------------------------------------------------------------------
+let g:terraform_align=1
+
+" ------------------------------------------------------------------------
 " filetype specific settings
 " ------------------------------------------------------------------------
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType terraform setlocal commentstring=#%s
