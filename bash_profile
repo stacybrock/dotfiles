@@ -2,7 +2,7 @@ export PS1="\u@\h:\w$ "
 export CLICOLOR=1
 export LSCOLORS=ExgxCxDxCxegedabagaced
 export LESS='-R-i-P%f (%i/%m) line %lt/%L'
-export EDITOR='vi'
+export EDITOR=vim
 
 # aliases
 alias ll='ls -lh'
@@ -50,6 +50,9 @@ case $(uname -s) in
     # Linux-specific things here
     ;;
 *Darwin*)
+    # alias to override system vi
+    alias vi=/usr/local/bin/vim
+
     # homebrew disable google analytics tracking
     export HOMEBREW_NO_ANALYTICS=1
 
