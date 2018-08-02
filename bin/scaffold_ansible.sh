@@ -21,8 +21,18 @@ for ROLE in "$@"; do
     mkdir roles/$ROLE/files
     mkdir roles/$ROLE/templates
     touch roles/$ROLE/tasks/main.yml
+
+    echo "  Generating $ROLE.yml..."
+    cat > $ROLE.yml << EOF
+---
+- hosts: all
+  gather_facts: yes
+  remote_user: root
+  roles:
+    - $ROLE
+EOF
 done
 
-touch site.yml
 touch README.md
+
 echo "Done."
