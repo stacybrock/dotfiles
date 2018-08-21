@@ -142,3 +142,4 @@ let g:terraform_align=1
 " ------------------------------------------------------------------------
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType terraform setlocal commentstring=#%s
+autocmd FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
