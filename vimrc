@@ -133,13 +133,19 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_symbols.maxlinenr = '☰'
 
 " ------------------------------------------------------------------------
-" terraform settings
+" vim-terraform plugin settings
 " ------------------------------------------------------------------------
 let g:terraform_align=1
+let g:terraform_commentstring='#%s'
+
+" ------------------------------------------------------------------------
+" syntax specific settings
+" ------------------------------------------------------------------------
+autocmd syntax asciidoc syntax clear asciidocLiteralParagraph
+autocmd syntax asciidoc syntax clear asciidocMacroAttributes
 
 " ------------------------------------------------------------------------
 " filetype specific settings
 " ------------------------------------------------------------------------
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType terraform setlocal commentstring=#%s
 autocmd FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
