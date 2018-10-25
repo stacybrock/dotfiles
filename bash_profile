@@ -11,6 +11,11 @@ alias cal='gcal'
 alias groot='cd "`git root`"'
 eval "$(thefuck --alias)"
 
+# cdup - quickly climb directory trees
+cdup() {
+  cd `$HOME/bin/cdup $1`
+}
+
 # bash history tweaks
 export HISTFILESIZE=10000
 export HISTSIZE=5000
