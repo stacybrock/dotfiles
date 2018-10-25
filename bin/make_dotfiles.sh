@@ -12,7 +12,7 @@ DOTFILES="$HOME/dotfiles/*"
 BIN="$HOME/dotfiles/bin/*"
 BACKUP="$HOME/.dotfiles_old"
 IGNORE_DOTFILES=("README.md" "bin")
-IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb")
+IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb" "list_adocs.py")
 
 ########## Utility Functions
 
