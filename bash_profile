@@ -9,6 +9,7 @@ alias ll='ls -lh'
 alias grep='grep --color=auto'
 alias cal='gcal'
 alias groot='cd "`git root`"'
+alias jrnlw='jrnl -from "last week"'
 eval "$(thefuck --alias)"
 
 # cdup - quickly climb directory trees
