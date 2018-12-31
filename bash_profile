@@ -14,7 +14,11 @@ eval "$(thefuck --alias)"
 
 # cdup - quickly climb directory trees
 cdup() {
-  cd `$HOME/bin/cdup $1`
+  DOTS=`$HOME/bin/cdup $1`
+  RETVAL=$?
+  if [ $RETVAL -eq 0 ]; then
+    cd $DOTS
+  fi
 }
 
 # bash history tweaks
