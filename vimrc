@@ -17,9 +17,6 @@ let mapleader = ","
 " re-hardwrap a paragraph of text
 nnoremap <leader>q gqip
 
-" map jj to escape
-inoremap jj <Esc>
-
 " fix annoyances
 map q: :
 command -bang Q quit<bang>
@@ -133,10 +130,15 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_symbols.maxlinenr = '☰'
 
 " ------------------------------------------------------------------------
+" ansible-vim plugin settings
+" ------------------------------------------------------------------------
+let g:ansible_unindent_after_newline = 1
+
+" ------------------------------------------------------------------------
 " vim-terraform plugin settings
 " ------------------------------------------------------------------------
-let g:terraform_align=1
-let g:terraform_commentstring='#%s'
+let g:terraform_align = 1
+let g:terraform_commentstring = '#%s'
 
 " ------------------------------------------------------------------------
 " syntax specific settings
