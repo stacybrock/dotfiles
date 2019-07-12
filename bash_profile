@@ -37,6 +37,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 pyenv virtualenvwrapper
 
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # go
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
