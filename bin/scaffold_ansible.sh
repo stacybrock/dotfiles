@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+if [[ $1 = '' || $1 = '-h' || $1 = '--help' ]]; then
+    cat << EOF
+Usage: scaffold_ansible.sh [-h] ROLES
+
+Scaffolds an ansible playbook directory structure inside the current directory.
+
+  -h, --help  Show usage
+  ROLES       Role name, or comma-separated list of role names to create
+EOF
+    exit 0
+fi
+
 echo "Creating directory structure..."
 mkdir group_vars
 mkdir inventory
