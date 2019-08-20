@@ -1,4 +1,4 @@
-export PS1="\[\e[0;36m\]\u@\h:\w$ \[\e[m\]"
+export PS1="\[\e[1;37m\]\u@\h:\w$ \[\e[m\]"
 export CLICOLOR=1
 export LSCOLORS=ExgxCxDxCxegedabagaced
 export LESS='-R-i-P%f (%i/%m) line %lt/%L'
