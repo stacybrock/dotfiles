@@ -141,6 +141,11 @@ let g:terraform_align = 1
 let g:terraform_commentstring = '#%s'
 
 " ------------------------------------------------------------------------
+" ctrlp plugin settings
+" ------------------------------------------------------------------------
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" ------------------------------------------------------------------------
 " syntax specific settings
 " ------------------------------------------------------------------------
 autocmd syntax asciidoc syntax clear asciidocLiteralParagraph
