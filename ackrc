@@ -16,8 +16,17 @@
 
 ### Directories to ignore
 
+# Terragrunt
+--ignore-directory=is:.terragrunt-cache
+
 # OS X Library
 --ignore-directory=match:^Library
+
+# Python virtualenvs
+--ignore-directory=is:.env
+
+# AWS CDK
+--ignore-directory=is:cdk.out
 
 # Bazaar
 # http://bazaar.canonical.com/
