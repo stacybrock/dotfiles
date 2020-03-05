@@ -32,7 +32,7 @@ class Backhoe < Thor
   desc "extract POS", "extract all words of the given part of speech"
   method_option :inputfile, :aliases => '-i', :desc => 'inputfile', :required => true
   def extract(pos)
-    valid_pos = ['verbs', 'adjectives', 'nouns']
+    valid_pos = ['verbs', 'adjectives', 'nouns', 'adverbs']
     if !valid_pos.include?(pos)
       puts "ERROR: invalid part of speech given: #{pos}\nValid options are: #{valid_pos}\n\n"
       help
@@ -59,6 +59,8 @@ class Backhoe < Thor
       target_pos = EngTagger::JJ
     elsif pos == 'nouns'
       target_pos = EngTagger::NN
+    elsif pos == 'adverbs'
+      target_pos = EngTagger::RB
     end
     words = tgr.get_by_pos(tagged, target_pos).sort_by { |k,v| v }
     words.reverse_each do |w|
