@@ -45,6 +45,8 @@ filetype plugin on
 " detect filetypes
 au BufRead,BufNewFile *.pp              set filetype=puppet
 au BufRead,BufNewFile *.txt             set filetype=text
+au BufRead,BufNewFile *.json-dist       set filetype=json
+au BufRead,BufNewFile *.yml-dist        set filetype=yaml
 
 " highlight listchars (trail, etc) in red
 highlight SpecialKey ctermbg=196
@@ -156,3 +158,4 @@ autocmd syntax asciidoc syntax clear asciidocMacroAttributes
 " ------------------------------------------------------------------------
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
+autocmd FileType markdown setlocal nolist wrap linebreak breakat&vim
