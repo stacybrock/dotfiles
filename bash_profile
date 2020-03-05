@@ -40,6 +40,10 @@ pyenv virtualenvwrapper
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# aws-vault
+export AWS_VAULT_PASS_PREFIX=aws-vault
+export AWS_VAULT_BACKEND=pass
+
 # go
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
