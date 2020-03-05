@@ -14,6 +14,8 @@
     s = status -s
     root = "!f() { GITROOT=`pwd`; echo $GITROOT; }; f"
     pch = !.git/hooks/pre-commit
+    wd = diff --word-diff=plain
+    wds = diff --staged --word-diff=plain
 [init]
     templatedir = ~/.git_template
 [pull]
