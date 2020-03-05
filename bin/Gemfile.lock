@@ -4,7 +4,7 @@ GEM
     curb (0.9.10)
     engtagger (0.2.1)
     mini_portile2 (2.4.0)
-    nokogiri (1.10.4)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     thor (0.20.3)
 
