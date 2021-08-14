@@ -130,6 +130,7 @@ let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.colnr = "\ua0"  " override broken symbol
 
 " ------------------------------------------------------------------------
 " ansible-vim plugin settings
