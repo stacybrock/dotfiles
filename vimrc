@@ -43,9 +43,10 @@ filetype indent on
 filetype plugin on
 
 " detect filetypes
+au BufRead,BufNewFile *.hcl             set filetype=terraform
+au BufRead,BufNewFile *.json-dist       set filetype=json
 au BufRead,BufNewFile *.pp              set filetype=puppet
 au BufRead,BufNewFile *.txt             set filetype=text
-au BufRead,BufNewFile *.json-dist       set filetype=json
 au BufRead,BufNewFile *.yml-dist        set filetype=yaml
 
 " highlight listchars (trail, etc) in red
