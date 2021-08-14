@@ -18,6 +18,7 @@
     wds = diff --staged --word-diff=plain
 [init]
     templatedir = ~/.git_template
+	defaultBranch = main
 [pull]
     rebase = true
 [pager]
