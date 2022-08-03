@@ -4,7 +4,8 @@ MAILFILTER_DIR=$HOME/tools/o365-mail-filter
 
 KILL_ONLY=false
 PASS_ONLY=false
-while getopts ":kp" opt; do
+RUN_ONLY=false
+while getopts ":kpr" opt; do
   case ${opt} in
     k ) # process option k
         KILL_ONLY=true
@@ -12,15 +13,19 @@ while getopts ":kp" opt; do
     p ) # process option p
         PASS_ONLY=true
       ;;
+    r ) # process option r
+        RUN_ONLY=true
+      ;;
     \? )
         cat << EOF
-Usage: kick_mailfilter.sh [-k] [-p]
+Usage: kick_mailfilter.sh [-k] [-p] [-r]
 
-If no options are given, runs the mailfilter script
+If no options are given, launches the mailfilter script via launchd
 
 Options
   -k  terminate running mailfilter
   -p  read creds into envvars out of pass
+  -r  run mailfilter manually via python virtualenv
 EOF
         exit 1
       ;;
@@ -31,7 +36,7 @@ shift $((OPTIND -1))
 # check for -k (kill only) flag and bail early if it's set
 if $KILL_ONLY; then
     launchctl stop local.mailfilter
-    echo `launchctl list | grep local.mailfilter`
+    echo `launchctl list | grep 'local.mailfilter'`
     exit 0
 fi
 
@@ -48,6 +53,13 @@ if $PASS_ONLY; then
 fi
 
 # enable virtualenv and run mail-filter.py
-source $HOME/.virtualenvs/mail-filter/bin/activate
-cd $MAILFILTER_DIR
-python mail-filter.py
+if $RUN_ONLY; then
+    source $HOME/.virtualenvs/o365mailfilter/bin/activate
+    cd $MAILFILTER_DIR
+    python mail-filter.py
+    exit 0
+fi
+
+launchctl start local.mailfilter
+sleep 2
+echo `launchctl list | grep 'local.mailfilter'`
