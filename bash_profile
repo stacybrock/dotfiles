@@ -1,15 +1,32 @@
-export PS1="\[\e[1;37m\]\u@\h:\w$ \[\e[m\]"
+SHORTNAME=`hostname -s`
+if [[ $SHORTNAME == 'BROCK-MBP14' ]]; then
+    export PS1="\[\e[1;37m\]\u@MBP14:\w$ \[\e[m\]"
+else
+    export PS1="\[\e[1;37m\]\u@\h:\w$ \[\e[m\]"
+fi
 export CLICOLOR=1
 export LSCOLORS=ExgxCxDxCxegedabagaced
 export LESS='-R-i-P%f (%i/%m) line %lt/%L'
 export EDITOR=vim
 
+OS_FAMILY=`uname -s`
+OS_ARCH=`uname -m`
+
+# setup homebrew, if on macOS
+if [[ $OS_FAMILY == 'Darwin' && $OS_ARCH='arm64' ]]; then
+    # M1 mac detected
+    HOMEBREW_PREFIX=/opt/homebrew
+else
+    # Intel mac detected
+    HOMEBREW_PREFIX=/usr/local
+fi
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+
 # aliases
 alias ll='ls -lh'
 alias grep='grep --color=auto'
-alias cal='gcal'
+alias cal='ncal -C'
 alias groot='cd "`git root`"'
-alias jrnlw='jrnl -from "last week"'
 eval "$(thefuck --alias)"
 
 # cdup - quickly climb directory trees
@@ -35,6 +52,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+export PATH=$(pyenv root)/shims:$PATH
 pyenv virtualenvwrapper
 
 # fzf
@@ -62,9 +80,6 @@ case $(uname -s) in
     # Linux-specific things here
     ;;
 *Darwin*)
-    # alias to override system vi
-    alias vi=/usr/local/bin/vim
-
     # homebrew disable google analytics tracking
     export HOMEBREW_NO_ANALYTICS=1
 
@@ -73,14 +88,17 @@ case $(uname -s) in
     export PATH=$PATH:/usr/local/Cellar/maven/3.5.2/bin
 
     # set some paths for homebrew-installed languages
-    PATH=$PATH:/usr/local/opt/ruby/bin
-    PATH=$PATH:/usr/local/opt/node/bin
-    PATH=$PATH:/usr/local/opt/perl/bin
+    PATH=$PATH:$HOMEBREW_PREFIX/opt/ruby/bin
+    PATH=$PATH:$HOMEBREW_PREFIX/opt/node/bin
+    PATH=$PATH:$HOMEBREW_PREFIX/opt/perl/bin
+
+    # make homebrew play nicely with pyenv
+    alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" brew'
 
     # z
     . `brew --prefix`/etc/profile.d/z.sh
 
-    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
     ;;
 esac
 
