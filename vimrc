@@ -7,15 +7,22 @@
 
 set nocompatible
 
-" pathogen
-" https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
-
 " leader
 let mapleader = ","
 
+" create augroup to isolate my customizations
+augroup kxgp
+    autocmd!
+augroup END
+
 " re-hardwrap a paragraph of text
 nnoremap <leader>q gqip
+
+" join lines into one line (softwrapped paragraph)
+nnoremap <leader>w vipJ0
+
+" experimental: remap ctrl-l to deactivate search highlights
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " fix annoyances
 map q: :
@@ -43,11 +50,11 @@ filetype indent on
 filetype plugin on
 
 " detect filetypes
-au BufRead,BufNewFile *.hcl             set filetype=terraform
-au BufRead,BufNewFile *.json-dist       set filetype=json
-au BufRead,BufNewFile *.pp              set filetype=puppet
-au BufRead,BufNewFile *.txt             set filetype=text
-au BufRead,BufNewFile *.yml-dist        set filetype=yaml
+au kxgp BufRead,BufNewFile *.hcl           set filetype=terraform
+au kxgp BufRead,BufNewFile *.json-dist     set filetype=json
+au kxgp BufRead,BufNewFile *.pp            set filetype=puppet
+au kxgp BufRead,BufNewFile *.txt           set filetype=text
+au kxgp BufRead,BufNewFile *.yml-dist      set filetype=yaml
 
 " highlight listchars (trail, etc) in red
 highlight SpecialKey ctermbg=196
@@ -152,12 +159,13 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " ------------------------------------------------------------------------
 " syntax specific settings
 " ------------------------------------------------------------------------
-autocmd syntax asciidoc syntax clear asciidocLiteralParagraph
-autocmd syntax asciidoc syntax clear asciidocMacroAttributes
+au kxgp syntax asciidoc syntax clear asciidocLiteralParagraph
+au kxgp syntax asciidoc syntax clear asciidocMacroAttributes
 
 " ------------------------------------------------------------------------
 " filetype specific settings
 " ------------------------------------------------------------------------
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
-autocmd FileType markdown setlocal nolist wrap linebreak breakat&vim
+au kxgp FileType javascript setlocal shiftwidth=2 tabstop=2
+au kxgp FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
+au kxgp FileType markdown setlocal nolist wrap linebreak breakat&vim
+au kxgp FileType text setlocal spell wrap linebreak nolist nojoinspaces
