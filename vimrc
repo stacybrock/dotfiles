@@ -32,6 +32,9 @@ command -bang Q quit<bang>
 imap <Leader>s <C-o>:setlocal spell!<CR>
 nmap <Leader>s :setlocal spell!<CR>
 
+" trigger reload of wordlister spellfile
+map <leader>a :WordlisterUpdate<CR>
+
 " ------------------------------------------------------------------------
 " 4. displaying text
 " ------------------------------------------------------------------------
@@ -167,5 +170,5 @@ au kxgp syntax asciidoc syntax clear asciidocMacroAttributes
 " ------------------------------------------------------------------------
 au kxgp FileType javascript setlocal shiftwidth=2 tabstop=2
 au kxgp FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
-au kxgp FileType markdown setlocal nolist wrap linebreak breakat&vim
-au kxgp FileType text setlocal spell wrap linebreak nolist nojoinspaces
+au kxgp FileType markdown setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
+au kxgp FileType text setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
