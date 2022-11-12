@@ -8,6 +8,7 @@ export CLICOLOR=1
 export LSCOLORS=ExgxCxDxCxegedabagaced
 export LESS='-R-i-P%f (%i/%m) line %lt/%L'
 export EDITOR=vim
+export ACK_PAGER_COLOR='less -R'
 
 OS_FAMILY=`uname -s`
 OS_ARCH=`uname -m`
@@ -47,6 +48,10 @@ shopt -s histappend
 # other bash tweaks
 shopt -s no_empty_cmd_completion
 
+# gpg
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -80,6 +85,9 @@ case $(uname -s) in
     # Linux-specific things here
     ;;
 *Darwin*)
+    # alias to override system vi
+    alias vi=/usr/local/bin/vim
+
     # homebrew disable google analytics tracking
     export HOMEBREW_NO_ANALYTICS=1
 
