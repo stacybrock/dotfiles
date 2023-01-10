@@ -86,10 +86,11 @@ case $(uname -s) in
     ;;
 *Darwin*)
     # alias to override system vi
-    alias vi=/usr/local/bin/vim
+    alias vi=$HOMEBREW_PREFIX/bin/vim
 
-    # homebrew disable google analytics tracking
+    # set homebrew options
     export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_NO_ENV_HINTS=1
 
     # java on mac os
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
