@@ -11,8 +11,21 @@ set nocompatible
 let mapleader = ","
 
 " create augroup to isolate my customizations
-augroup kxgp
+augroup kalrnux
     autocmd!
+
+    " Jump to the last editing position when opening a file
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+    " Switch syntax highlighting on, when the terminal has colors
+    " Also switch on highlighting the last used search pattern.
+    if &t_Co > 2 || has("gui_running")
+        syntax on
+        set hlsearch
+    endif
 augroup END
 
 " re-hardwrap a paragraph of text
@@ -53,17 +66,17 @@ filetype indent on
 filetype plugin on
 
 " detect filetypes
-au kxgp BufRead,BufNewFile *.hcl           set filetype=terraform
-au kxgp BufRead,BufNewFile *.json-dist     set filetype=json
-au kxgp BufRead,BufNewFile *.pp            set filetype=puppet
-au kxgp BufRead,BufNewFile *.txt           set filetype=text
-au kxgp BufRead,BufNewFile *.yml-dist      set filetype=yaml
+au kalrnux BufRead,BufNewFile *.hcl           set filetype=terraform
+au kalrnux BufRead,BufNewFile *.json-dist     set filetype=json
+au kalrnux BufRead,BufNewFile *.pp            set filetype=puppet
+au kalrnux BufRead,BufNewFile *.txt           set filetype=text
+au kalrnux BufRead,BufNewFile *.yml-dist      set filetype=yaml
 
 " highlight listchars (trail, etc) in red
 highlight SpecialKey ctermbg=196
 
 " spellcheck language and spellfile
-set spelllang=en
+set spelllang=en,wordlister
 set spellfile=$HOME/Dropbox/archives/vim/en.utf-8.add
 
 " ------------------------------------------------------------------------
@@ -162,13 +175,13 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " ------------------------------------------------------------------------
 " syntax specific settings
 " ------------------------------------------------------------------------
-au kxgp syntax asciidoc syntax clear asciidocLiteralParagraph
-au kxgp syntax asciidoc syntax clear asciidocMacroAttributes
+au kalrnux syntax asciidoc syntax clear asciidocLiteralParagraph
+au kalrnux syntax asciidoc syntax clear asciidocMacroAttributes
 
 " ------------------------------------------------------------------------
 " filetype specific settings
 " ------------------------------------------------------------------------
-au kxgp FileType javascript setlocal shiftwidth=2 tabstop=2
-au kxgp FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
-au kxgp FileType markdown setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
-au kxgp FileType text setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
+au kalrnux FileType javascript setlocal shiftwidth=2 tabstop=2
+au kalrnux FileType perl setlocal shiftwidth=8 tabstop=8 noexpandtab
+au kalrnux FileType markdown setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
+au kalrnux FileType text setlocal spell nolist wrap linebreak breakat&vim nojoinspaces
