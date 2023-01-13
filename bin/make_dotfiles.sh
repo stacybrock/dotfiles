@@ -6,7 +6,7 @@
 # Loosely based on:
 # http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 
-########## Configuration
+##### Configuration
 
 DOTFILES="$HOME/dotfiles/*"
 BIN="$HOME/dotfiles/bin/*"
@@ -14,69 +14,97 @@ BACKUP="$HOME/.dotfiles_old"
 IGNORE_DOTFILES=("README.md" "bin")
 IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb" "list_adocs.py")
 
-########## Utility Functions
+##### Utility Functions
 
-# hasElement
+# has_element
 # returns true if element is contained in the given array
-hasElement() {
+has_element() {
     local element
     for element in "${@:2}"; do [[ "$element" == "$1" ]] && return 0; done
     return 1
 }
 
-##########
+# setup_colors
+# define color codes for pretty, pretty output
+setup_colors() {
+    if [[ -t 2 ]] && [[ -z "${NO_COLOR-}" ]] && [[ "${TERM-}" != "dumb" ]]; then
+        NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' BOLDGREEN='\033[1;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' BOLDCYAN='\033[1;36m' YELLOW='\033[1;33m'
+    else
+        NOFORMAT='' RED='' GREEN='' ORANGE='' BLUE='' PURPLE='' CYAN='' YELLOW=''
+    fi
+}
 
-# create .dotfiles_old in homedir
-echo "creating $BACKUP for backing up existing dotfiles..."
-mkdir -p $BACKUP
+# msg
+# write nicely to stdout
+msg() {
+    echo >&2 -e "${1-}"
+}
+
+##### Pre-Magic
+
+setup_colors
+
+##### Where the Magic Happens
+
+msg "${BOLDCYAN}Creating directories...${NOFORMAT}"
+
+# create .dotfiles_old/ in homedir
+if [[ -d "$BACKUP" ]]; then
+    msg "  $BACKUP already exists, skipping..."
+else
+    msg "  ${GREEN}Creating $BACKUP for backing up existing dotfiles...${NOFORMAT}"
+    mkdir -p $BACKUP
+fi
+
+# create bin/ in homedir
+if [[ -d "$HOME/bin" ]]; then
+    msg "  $HOME/bin already exists, skipping..."
+else
+    msg "  ${GREEN}Creating $HOME/bin${NOFORMAT}"
+    mkdir $HOME/bin
+fi
 
 # create dotfile symlinks
-echo "processing dotfiles..."
+msg "${BOLDCYAN}Processing dotfiles...${NOFORMAT}"
 for file in $DOTFILES
 do
     f=`basename $file`
 
     # check if this file should be ignored
-    if hasElement $f "${IGNORE_DOTFILES[@]}"; then continue; fi
+    if has_element $f "${IGNORE_DOTFILES[@]}"; then continue; fi
 
     if [[ -f "$file" || -d "$file" ]]; then
         # check if symlink already exists
         if [ -L "$HOME/.$f" ]; then
-            echo "  skipping symlink for $f (already exists)..."
+            msg "  Symlink for $f already exists..."
             continue
         fi
-        # check if dotfile is a regular file; if so, back it up
+        # check if dotfile is a regular file or dir; if so, back it up
         if [[ -f "$HOME/.$f" || -d "$HOME/.$f" ]]; then
-            echo "  moving ~/.$f to $BACKUP"
+            msg "  ${GREEN}Moving ${BOLDGREEN}~/.$f${GREEN} to ${BOLDGREEN}$BACKUP${NOFORMAT}"
             mv ~/.$f $BACKUP
         fi
         # now create the symlink
-        echo "  creating symlink: ~/.$f -> $file"
+        msg "  ${GREEN}Creating symlink: ${BOLDGREEN}~/.$f${GREEN} -> ${BOLDGREEN}$file${NOFORMAT}"
         ln -s $file ~/.$f
     fi
 done
 
-# does bin dir exist?
-if [[ -d "$HOME/bin" ]]; then
-    echo "$HOME/bin exists"
-else
-    echo "creating $HOME/bin"
-    mkdir $HOME/bin
-fi
-
 # create bin file symlinks
-echo "processing bin files..."
+msg "${BOLDCYAN}Processing bin files...${NOFORMAT}"
 for file in $BIN
 do
     f=`basename $file`
 
     # check if this file should be ignored
-    if hasElement $f "${IGNORE_BINFILES[@]}"; then continue; fi
+    if has_element $f "${IGNORE_BINFILES[@]}"; then continue; fi
 
     if [ -L "$HOME/bin/$f" ]; then
-        echo "  skipping symlink for $file (already exists)..."
+        msg "  Symlink for $file already exists..."
         continue
     fi
-    echo "  creating symlink: ~/bin/$f -> $file"
+    msg "  ${GREEN}Creating symlink: ${BOLDGREEN}~/bin/$f${GREEN} -> ${BOLDGREEN}$file${NOFORMAT}"
     ln -s $file ~/bin/$f
 done
+
+msg "${GREEN}Done.${NOFORMAT}"
