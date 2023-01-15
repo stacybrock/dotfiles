@@ -1,0 +1,17 @@
+# enable vi-style navigation in the command line
+set editing-mode vi
+
+# enable changing cursor to indicate vi mode
+set show-mode-in-prompt on
+
+# configure cursor
+# FOR THE NUMBER AFTER `\e[`:
+#     0: blinking block
+#     1: blinking block (default)
+#     2: steady block
+#     3: blinking underline
+#     4: steady underline
+#     5: blinking bar (xterm)
+#     6: steady bar (xterm)
+set vi-ins-mode-string \1\e[2 q\2
+set vi-cmd-mode-string \1\e[4 q\2
