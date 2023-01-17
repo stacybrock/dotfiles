@@ -1,0 +1,7 @@
+auto-reload yes
+
+browser launch_firefox.sh
+
+bind-key T select-tag
+bind-key j next
+bind-key k prev
