@@ -114,7 +114,7 @@ set cryptmethod=blowfish2
 " ------------------------------------------------------------------------
 
 set undofile        " save and restore undo history
-set undodir=$HOME/.vimundo
+set undodir=$HOME/.vim/undo
 
 " ------------------------------------------------------------------------
 " 22. running make and jumping to errors
@@ -171,6 +171,11 @@ let g:terraform_commentstring = '#%s'
 " ctrlp plugin settings
 " ------------------------------------------------------------------------
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" ------------------------------------------------------------------------
+" vim-mundo plugin settings
+" ------------------------------------------------------------------------
+nnoremap <F5> :MundoToggle<CR>
 
 " ------------------------------------------------------------------------
 " syntax specific settings
