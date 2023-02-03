@@ -1,6 +1,11 @@
 auto-reload yes
 
-browser launch_firefox.sh
+ignore-article "https://eclecticlight.co/feed/" "title =~ \"visual art\""
+ignore-article "https://eclecticlight.co/feed/" "title =~ \"paint\""
+ignore-article "https://eclecticlight.co/feed/" "title =~ \"Mac riddles\""
+ignore-article "https://eclecticlight.co/feed/" "title =~ \"All the fashion\""
+
+browser ~/dotfiles/bin/launch_firefox.sh
 
 bind-key T select-tag
 bind-key j next
