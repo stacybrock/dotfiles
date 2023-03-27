@@ -4,6 +4,7 @@ ignore-article "https://eclecticlight.co/feed/" "title =~ \"visual art\""
 ignore-article "https://eclecticlight.co/feed/" "title =~ \"paint\""
 ignore-article "https://eclecticlight.co/feed/" "title =~ \"Mac riddles\""
 ignore-article "https://eclecticlight.co/feed/" "title =~ \"All the fashion\""
+ignore-article "https://shkspr.mobi/blog/feed" "title =~ \"Book Review\""
 
 browser ~/dotfiles/bin/launch_firefox.sh
 
