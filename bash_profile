@@ -61,7 +61,7 @@ export PATH=$(pyenv root)/shims:$PATH
 pyenv virtualenvwrapper
 
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # aws-vault
 export AWS_VAULT_PASS_PREFIX=aws-vault
@@ -107,7 +107,17 @@ case $(uname -s) in
     # z
     . `brew --prefix`/etc/profile.d/z.sh
 
-    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+    # bash completions
+    if type brew &>/dev/null; then
+        if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+            source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        else
+            for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+            do
+                [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+            done
+        fi
+    fi
     ;;
 esac
 

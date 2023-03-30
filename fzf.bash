@@ -1,7 +1,6 @@
 # Setup fzf
 # ---------
-HOMEBREW_PREFIX=/usr/local
-[ -f /opt/homebrew/bin/brew ] && HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_PREFIX=$(brew --prefix)
 
 if [[ ! "$PATH" == *$HOMEBREW_PREFIX/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOMEBREW_PREFIX/opt/fzf/bin"
