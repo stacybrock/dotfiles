@@ -10,8 +10,9 @@
 
 DOTFILES="$HOME/dotfiles/*"
 BIN="$HOME/dotfiles/bin/*"
+LAUNCH_AGENTS="$HOME/dotfiles/launch_agents/*"
 BACKUP="$HOME/.dotfiles_old"
-IGNORE_DOTFILES=("README.md" "bin")
+IGNORE_DOTFILES=("README.md" "bin" "launch_agents")
 IGNORE_BINFILES=("Gemfile" "Gemfile.lock" "config.yml" "config.yml-dist" "bus.rb" "util.rb" "list_adocs.py" "launch_firefox.sh")
 
 ##### Utility Functions
@@ -105,6 +106,20 @@ do
     fi
     msg "  ${GREEN}Creating symlink: ${BOLDGREEN}~/bin/$f${GREEN} -> ${BOLDGREEN}$file${NOFORMAT}"
     ln -s $file ~/bin/$f
+done
+
+# create LaunchAgents file symlinks
+msg "${BOLDCYAN}Processing LaunchAgents files...${NOFORMAT}"
+for file in $LAUNCH_AGENTS
+do
+    f=`basename $file`
+
+    if [ -L "$HOME/Library/LaunchAgents/$f" ]; then
+        msg "  Symlink for $file already exists..."
+        continue
+    fi
+    msg "  ${GREEN}Creating symlink: ${BOLDGREEN}~/Library/LaunchAgents/$f${GREEN} -> ${BOLDGREEN}$file${NOFORMAT}"
+    ln -s $file ~/Library/LaunchAgents/$f
 done
 
 msg "${GREEN}Done.${NOFORMAT}"
